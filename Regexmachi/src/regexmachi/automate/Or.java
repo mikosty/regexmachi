@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package automate;
+package regexmachi.automate;
 
 import java.util.ArrayList;
 
@@ -11,11 +11,11 @@ import java.util.ArrayList;
  *
  * @author mikosty
  */
-public class Or implements PartOfAutomate {
+public class Or implements PartOfAutomaton {
 
-    private ArrayList<PartOfAutomate> listOfPossibilities;
+    private ArrayList<PartOfAutomaton> listOfPossibilities;
 
-    public Or(ArrayList<PartOfAutomate> parts) {
+    public Or(ArrayList<PartOfAutomaton> parts) {
         this.listOfPossibilities = parts;
     }
 

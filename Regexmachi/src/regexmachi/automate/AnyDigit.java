@@ -3,21 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package automate;
-
-import java.util.Stack;
+package regexmachi.automate;
 
 /**
  *
  * @author mikosty
  */
-public class Automaton {
-    
-    // lista 
-    private Stack automate;
-    
-    public Automaton() {
-        
+public class AnyDigit extends Transition {
+
+    public AnyDigit(Character aCharacter) {
+        super(aCharacter);
     }
     
 }

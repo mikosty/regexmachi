@@ -3,23 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package automate;
+package regexmachi.automate;
 
 /**
  *
  * @author mikosty
  */
-public class State implements PartOfAutomate {
-
-    private PartOfAutomate loopCharacter;
-
-    public State(PartOfAutomate loop) {
-        this.loopCharacter = loop;
+public class Transition implements PartOfAutomaton{
+    
+    private Character character;
+    
+    public Transition(Character aCharacter) {
+        this.character = aCharacter;
     }
 
     @Override
     public boolean accepts(Character input) {
-        return this.loopCharacter.accepts(input);
+        return this.character.equals(input);
     }
-
+    
 }

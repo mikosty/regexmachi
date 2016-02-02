@@ -3,16 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package automate;
+package regexmachi.automate;
 
 /**
  *
  * @author mikosty
+ * 
+ * Automaatin kaikki osat toteuttavat 
  */
-public class AnyDigit extends Transition {
-
-    public AnyDigit(Character aCharacter) {
-        super(aCharacter);
-    }
+public interface PartOfAutomaton {
+    
+    public boolean accepts(Character input);
+    
     
 }

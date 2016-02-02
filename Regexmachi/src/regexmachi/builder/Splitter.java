@@ -5,8 +5,9 @@
  */
 package regexmachi.builder;
 
-import automate.Automaton;
-import automate.PartOfAutomate;
+import regexmachi.automate.Automaton;
+import regexmachi.automate.PartOfAutomaton;
+import regexmachi.automate.Transition;
 
 /**
  *
@@ -16,6 +17,8 @@ public class Splitter {
 
     public Automaton buildAutomaton(String regex) {
         
+        Automaton automaton = new Automaton();
+        
         //aletaan käymään annettua regexiä läpi
         for (int i = 0; i < regex.length(); i++) {
 
@@ -23,6 +26,7 @@ public class Splitter {
 
             if (Character.isLetter(c)) {
                 // luodaan siirtymä tilalle, joka hyväksyy kirjaimen
+                automaton.addPart(this.characterTransition(c));
             } else if (Character.isDigit(c)) {
                 // luodaan siirtymä tilalle, joka hyväksyy numeron
             } else if (c == '\\') {
@@ -39,10 +43,14 @@ public class Splitter {
 
             }
         }
-        
+        return automaton;
+    }
+    
+    public PartOfAutomaton characterTransition(Character c) {
+        return new Transition(c);
     }
 
-    public PartOfAutomate anyDigit() {
-        
-    }
+//    public PartOfAutomate anyDigit() {
+//        
+//    }
 }
