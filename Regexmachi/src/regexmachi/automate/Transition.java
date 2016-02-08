@@ -21,5 +21,7 @@ public class Transition implements PartOfAutomaton{
     public boolean accepts(Character input) {
         return this.character.equals(input);
     }
+
+    
     
 }

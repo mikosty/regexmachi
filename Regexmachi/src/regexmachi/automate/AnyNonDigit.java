@@ -8,11 +8,14 @@ package regexmachi.automate;
 /**
  *
  * @author mikosty
- * 
- * Automaatin kaikki osat toteuttavat 
  */
-public interface PartOfAutomaton {
+public class AnyNonDigit implements PartOfAutomaton {
+
+    @Override
+    public boolean accepts(Character input) {
+        return "ABCDEFGHJKLMNOPQRSTUVWXYZabcefghjklmnopqrstuvwxyz".contains(input.toString());
+    }
+
     
-    public boolean accepts(Character input);
     
 }

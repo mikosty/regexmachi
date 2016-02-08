@@ -28,4 +28,6 @@ public class Or implements PartOfAutomaton {
         return false;
     }
 
+    
+
 }

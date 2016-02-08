@@ -9,10 +9,11 @@ package regexmachi.automate;
  *
  * @author mikosty
  */
-public class AnyDigit extends Transition {
+public class AnyDigit implements PartOfAutomaton {
 
-    public AnyDigit(Character aCharacter) {
-        super(aCharacter);
+    @Override
+    public boolean accepts(Character input) {
+        return "0123456789".contains(input.toString());
     }
-    
+
 }

@@ -5,8 +5,10 @@
  */
 package regexmachi.builder;
 
+import regexmachi.automate.AnyDigit;
 import regexmachi.automate.Automaton;
 import regexmachi.automate.PartOfAutomaton;
+import regexmachi.automate.State;
 import regexmachi.automate.Transition;
 
 /**
@@ -16,10 +18,9 @@ import regexmachi.automate.Transition;
 public class Splitter {
 
     public Automaton buildAutomaton(String regex) {
-        
+
         Automaton automaton = new Automaton();
-        
-        //aletaan käymään annettua regexiä läpi
+
         for (int i = 0; i < regex.length(); i++) {
 
             Character c = regex.charAt(i);
@@ -29,28 +30,61 @@ public class Splitter {
                 automaton.addPart(this.characterTransition(c));
             } else if (Character.isDigit(c)) {
                 // luodaan siirtymä tilalle, joka hyväksyy numeron
+
             } else if (c == '\\') {
 
                 if (i + 1 > regex.length()) {
-                    // palauta "invalid regex"
+                    System.out.println("invalid regex");
+                    System.exit(0);
+
                 } else if (regex.charAt(i + 1) == '.') {
                     // piste
+
                 } else if (regex.charAt(i + 1) == 'd') {
                     // anyDigit
+
+                    if ("+*".contains(regex.charAt(i + 2) + "")) {
+                        automaton.addPart(partOfRegexAnalyst(regex.substring(i, i + 2)));
+                        i += 2;
+                    }
+
+                    //automaton.addPart(this.anyDigit());
+                    //i++;
                 } else if (regex.charAt(i + 1) == 'D') {
                     // any Non digit character
                 }
-
+            } else if (c == '+') {
+                automaton.addPart(null);
             }
         }
         return automaton;
     }
-    
+
+    public PartOfAutomaton partOfRegexAnalyst(String part) {
+
+        Character c = part.charAt(0);
+
+        switch (c) {
+            case 1:
+                c = '\\';
+                if (part.charAt(2) == '+') {
+                    if (part.charAt(1) == 'd') {
+                        return new State(new AnyDigit());
+                    }
+                }
+
+        }
+        return new State(new AnyDigit());
+    }
+
     public PartOfAutomaton characterTransition(Character c) {
         return new Transition(c);
     }
 
-//    public PartOfAutomate anyDigit() {
-//        
+    public PartOfAutomaton anyDigit() {
+        return new AnyDigit();
+    }
+//    public PartOfAutomaton stateWithLoop(Character c, boolean plus) {
+//        return new State(new )
 //    }
 }

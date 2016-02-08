@@ -7,6 +7,8 @@ package regexmachi;
 
 import java.util.Scanner;
 import regexmachi.automate.Automaton;
+import regexmachi.automate.PartOfAutomaton;
+import regexmachi.automate.State;
 import regexmachi.builder.Splitter;
 
 /**
@@ -33,30 +35,43 @@ public class Regexmachi {
 
         String inputString = "";
 
-        while (true) {
-            System.out.println("Give a string to evaluate: ");
-            inputString = keyboard.nextLine();
+        boolean match = true;
 
-            // inputString syötetään rakennettuun automaattiin joka joko hylkää tai hyväksyy syötteen.
-            if (automaton.numberOfParts() != inputString.length()) {
-                System.out.println("Not a match");
-                System.exit(0);
-            }
-            
-            
+        System.out.println("Give a string to evaluate: ");
+        inputString = keyboard.nextLine();
 
-            for (int i = 0; i < inputString.length(); i++) {
-                Character c = inputString.charAt(i);
-                
-                
-                
-                if(!automaton.popNext().accepts(c)) {
-                    System.out.println("Not a match, first unmatching character is " + "'" + c + "'");
+        // inputString syötetään rakennettuun automaattiin joka joko hylkää tai hyväksyy syötteen.
+
+        PartOfAutomaton currentPart = automaton.popNext();
+
+        for (int i = 0; i < inputString.length(); i++) {
+            Character c = inputString.charAt(i);
+
+            if (currentPart instanceof State) {
+                if (!currentPart.accepts(c)) {
+                    currentPart = automaton.popNext();
+                    if (!currentPart.accepts(c)) {
+                        System.out.println("Not a match, first unmatching character is " + "'" + c + "'");
+                        match = false;
+                        break;
+                    } else {
+                        currentPart = automaton.popNext();
+                    }
+                } else {
+                    continue;
                 }
-                
-            }
-            System.out.println("A match!");
+            } else {
+                if (!currentPart.accepts(c)) {
+                    System.out.println("Not a match, first unmatching character is " + "'" + c + "'");
+                    match = false;
+                    break;
+                }
+                currentPart = automaton.popNext();
 
+            }
+        }
+        if (match) {
+            System.out.println("A match!");
         }
 
     }
