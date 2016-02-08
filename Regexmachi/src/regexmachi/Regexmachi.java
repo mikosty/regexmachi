@@ -32,46 +32,18 @@ public class Regexmachi {
         // annetaan regex builderille
         // builder rakentaa DFA:n
         Automaton automaton = splitter.buildAutomaton(regex);
-
-        String inputString = "";
-
-        boolean match = true;
+        Regexmachine machine = new Regexmachine(automaton);
 
         System.out.println("Give a string to evaluate: ");
-        inputString = keyboard.nextLine();
+        String inputString = keyboard.nextLine();
 
         // inputString syötetään rakennettuun automaattiin joka joko hylkää tai hyväksyy syötteen.
-
-        PartOfAutomaton currentPart = automaton.popNext();
-
-        for (int i = 0; i < inputString.length(); i++) {
-            Character c = inputString.charAt(i);
-
-            if (currentPart instanceof State) {
-                if (!currentPart.accepts(c)) {
-                    currentPart = automaton.popNext();
-                    if (!currentPart.accepts(c)) {
-                        System.out.println("Not a match, first unmatching character is " + "'" + c + "'");
-                        match = false;
-                        break;
-                    } else {
-                        currentPart = automaton.popNext();
-                    }
-                } else {
-                    continue;
-                }
-            } else {
-                if (!currentPart.accepts(c)) {
-                    System.out.println("Not a match, first unmatching character is " + "'" + c + "'");
-                    match = false;
-                    break;
-                }
-                currentPart = automaton.popNext();
-
-            }
-        }
-        if (match) {
+        
+        if (machine.evaluateString(inputString)) {
             System.out.println("A match!");
+        }
+        else {
+            System.out.println("End.");
         }
 
     }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package regexmachi.builder;
 
 import regexmachi.automate.AnyDigit;
@@ -30,6 +25,7 @@ public class Splitter {
                 automaton.addPart(this.characterTransition(c));
             } else if (Character.isDigit(c)) {
                 // luodaan siirtymä tilalle, joka hyväksyy numeron
+                automaton.addPart(this.characterTransition(c));
 
             } else if (c == '\\') {
 
