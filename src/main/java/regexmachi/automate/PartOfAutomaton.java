@@ -13,6 +13,11 @@ package regexmachi.automate;
  */
 public interface PartOfAutomaton {
     
+    /**
+     * Interface for part of automaton class to implement.
+     * @param input character for part of automaton to accept
+     * @return
+     */
     public boolean accepts(Character input);
     
 }

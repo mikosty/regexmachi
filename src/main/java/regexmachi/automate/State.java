@@ -13,10 +13,19 @@ public class State implements PartOfAutomaton {
 
     private PartOfAutomaton loopCharacter;
 
+    /**
+     *
+     * @param loop
+     */
     public State(PartOfAutomaton loop) {
         this.loopCharacter = loop;
     }
 
+    /**
+     *
+     * @param input
+     * @return
+     */
     @Override
     public boolean accepts(Character input) {
         return this.loopCharacter.accepts(input);

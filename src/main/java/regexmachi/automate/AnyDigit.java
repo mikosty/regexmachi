@@ -11,6 +11,11 @@ package regexmachi.automate;
  */
 public class AnyDigit implements PartOfAutomaton {
 
+    /**
+     *
+     * @param input
+     * @return
+     */
     @Override
     public boolean accepts(Character input) {
         return "0123456789".contains(input.toString());

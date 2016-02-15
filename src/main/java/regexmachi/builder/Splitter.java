@@ -12,6 +12,11 @@ import regexmachi.automate.Transition;
  */
 public class Splitter {
 
+    /**
+     *
+     * @param regex
+     * @return
+     */
     public Automaton buildAutomaton(String regex) {
 
         Automaton automaton = new Automaton();
@@ -56,6 +61,11 @@ public class Splitter {
         return automaton;
     }
 
+    /**
+     *
+     * @param part
+     * @return
+     */
     public PartOfAutomaton partOfRegexAnalyst(String part) {
 
         Character c = part.charAt(0);
@@ -73,10 +83,19 @@ public class Splitter {
         return new State(new AnyDigit());
     }
 
+    /**
+     *
+     * @param c
+     * @return
+     */
     public PartOfAutomaton characterTransition(Character c) {
         return new Transition(c);
     }
 
+    /**
+     *
+     * @return
+     */
     public PartOfAutomaton anyDigit() {
         return new AnyDigit();
     }

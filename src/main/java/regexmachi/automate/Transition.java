@@ -13,10 +13,19 @@ public class Transition implements PartOfAutomaton{
     
     private Character character;
     
+    /**
+     *
+     * @param aCharacter
+     */
     public Transition(Character aCharacter) {
         this.character = aCharacter;
     }
 
+    /**
+     *
+     * @param input
+     * @return
+     */
     @Override
     public boolean accepts(Character input) {
         return this.character.equals(input);

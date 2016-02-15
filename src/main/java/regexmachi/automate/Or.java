@@ -15,10 +15,19 @@ public class Or implements PartOfAutomaton {
 
     private ArrayList<PartOfAutomaton> listOfPossibilities;
 
+    /**
+     * Represents '|' in given regex
+     * @param parts - list of possible 
+     */
     public Or(ArrayList<PartOfAutomaton> parts) {
         this.listOfPossibilities = parts;
     }
 
+    /**
+     *
+     * @param input
+     * @return
+     */
     @Override
     public boolean accepts(Character input) {
 

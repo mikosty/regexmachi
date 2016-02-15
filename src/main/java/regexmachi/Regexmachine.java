@@ -12,10 +12,19 @@ public class Regexmachine {
     
     private Automaton automaton;
     
+    /**
+     *
+     * @param automaton
+     */
     public Regexmachine(Automaton automaton) {
         this.automaton = automaton;
     }
     
+    /**
+     *  Evaluates a string in automaton.
+     * @param inputString
+     * @return true if automaton accepts given string
+     */
     public boolean evaluateString(String inputString) {
         
         

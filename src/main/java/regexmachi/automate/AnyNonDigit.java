@@ -11,6 +11,11 @@ package regexmachi.automate;
  */
 public class AnyNonDigit implements PartOfAutomaton {
 
+    /**
+     *
+     * @param input
+     * @return
+     */
     @Override
     public boolean accepts(Character input) {
         return "ABCDEFGHJKLMNOPQRSTUVWXYZabcefghjklmnopqrstuvwxyz".contains(input.toString());
